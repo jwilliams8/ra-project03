@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>RA-Project03</title>
@@ -5,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="format-detection" content="telephone=no">
-		<link rel="stylesheet" href="./css/styles.min.css" media="screen">
+		<link rel="stylesheet" href="assets/css/styles.min.css" media="screen">
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	</head>
 
@@ -13,16 +14,16 @@
 
 		<header>
 			<nav class="flex flex-row flex-justify-between flex-align-items-center flex-align-content-center full-width">
-				<img id="logo" class="md-margin-horizontal" src="images/logo-black.png"/>
+				<img id="logo" class="md-margin-horizontal" src="assets/images/logo-black.png"/>
 				<ul class="margin-left-auto font-weight-light element-hide tablet-desktop-show font-uppercase">
 					<li class="md-padding-right"><a href="#categories" class="smoothScroll">Categories</a></li>
 					<li class="md-padding-right"><a href="#products" class="smoothScroll">Products</a></li>
 					<li class="md-padding-right"><a href="#updates" class="smoothScroll">Updates</a></li>
 				</ul>
-				<div class="cart">
+				<div class="cart flex flex-align-items-center">
 				<div class="counter">
 				</div>
-				<img class="md-margin-horizontal" id="cart-icon" src="images/cart-black.png"/>
+				<img class="md-margin-horizontal" id="cart-icon" src="assets/images/cart-black.png"/>
 				</div>
 			</nav>
 			<div class="tablet-desktop-hide sm-padding-horizontal">
@@ -35,10 +36,12 @@
 		</header>
 
 			<div class="modal cart-modal">
-				<div class="modal-bg">
-					<div class="modal-box flex flex-justify-center flex-align-items-center">
-						<p>Cart Content</p>
+				<div class="modal-bg flex flex-justify-center flex-align-items-center">
+					<div class="modal-box">
+						<h2 class="text-uppercase text-center font-weight-light xs-padding-bottom">Your Cart</h2>
 						<i class="fa fa-times close-modal" aria-hidden="true"></i>
+						<div id="cart-rows">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -56,102 +59,47 @@
 
 			<section class="categories flex flex-col font-white font-uppercase lrg-font" id="categories">	
 				<div class="flex flex-col tablet-desktop-flex-row text-center font-shadow">
-					<div class="Box-1 category-padding sm-margin-bottom sm-margin-right-tablet-desktop"><p>Laptops</p></div>
+					<div class="box-1 category-padding sm-margin-bottom sm-margin-right-tablet-desktop"><p>Laptops</p></div>
 					<div class="flex flex-row flex-1">
-						<div class="Box-2 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom"><p>TV'S</p></div>
-						<div class="Box-3 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom sm-margin-left"><p>Home Audio</p></div>
+						<div class="box-2 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom"><p>TV'S</p></div>
+						<div class="box-3 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom sm-margin-left"><p>Home Audio</p></div>
 					</div>
 				</div>
 				<div class="flex flex-col tablet-desktop-flex-row text-center">
 					<div class="flex flex-row flex-1">
-						<div class="Box-4 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom sm-margin-right"><p>Tablets</p></div>
-						<div class="Box-5 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom"><p>Desktops</p></div>
+						<div class="box-4 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom sm-margin-right"><p>Tablets</p></div>
+						<div class="box-5 flex flex-justify-center flex-align-items-center category-padding sm-margin-bottom"><p>Desktops</p></div>
 					</div>
-					<div class="Box-6 category-padding sm-margin-bottom sm-margin-left-tablet-desktop"><p>Cellphones</p></div>
+					<div class="box-6 category-padding sm-margin-bottom sm-margin-left-tablet-desktop"><p>Cellphones</p></div>
 				</div>
 			</section>
 
-			<section class="lrg-padding-vert text-center" id="products">
+			<div id="products">
+			</div>
+
+			<section class="lrg-padding-vert text-center">
 			<h2 class="font-weight-light font-italic md-padding-bottom">Featured <span class="font-bold font-style-normal font-dark-blue">Products</span></h2>
-				<div class="carousel" data-flickity='{ "wrapAround": true }'>
-  					<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop">$59.00</p>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-	  				</div>
-  					<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop">$69.00</p>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-	  				</div>
-	  				<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop "><span class="font-linethrough sm-padding-right">$169.00</span>$129.00</p>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-	  				</div>
-  					<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop ">$89.00</p>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-	  				</div>
-  					<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop ">$129.00</p>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-	  				</div>
-  					<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop">$69.00</p>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-	  				</div>
-	  				<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop ">$169.00</p>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-	  				</div>
-  					<div class="carousel-cell">
-	  					<a href="#"><img class="xs-padding-bottom" src="images/imac.jpeg"/></a>
-						<p class="font-light-grey font-uppercase sm-font sm-font-tablet-desktop">Desktops</p>
-						<h3 class="font-weight-light sm-padding-vert font-line-height-sm"><a href="#">iMac</a></h3>
-						<p class="font-light-grey md-font md-font-tablet-desktop sm-padding-bottom no-padding-desktop "><span class="font-linethrough sm-padding-right">$99.00</span>$79.00</p>
-						<div>
-						<button type="submit" class="view-btn font-white md-margin-vert">Quick View</button>
-						<button type="submit" class="cart-btn font-white md-margin-vert">Add to <i class="fa fa-shopping-cart" aria-hidden="true"></i></button>
-						</div>
-	  				</div>
-				  </div>
+			<div class="carousel" data-flickity='{ "wrapAround": true }'>
+			</div>
 			</section>
 
 			<div class="modal quick-view-modal">
-				<div class="modal-bg">
-					<div class="modal-box flex flex-justify-center flex-align-items-center">
-						<p>Quick View Content</p>
+				<div class="modal-bg flex flex-justify-center flex-align-items-center">
+					<div class="modal-box flex">
 						<i class="fa fa-times close-modal" aria-hidden="true"></i>
+						<div id="quickViewModal" class="flex flex-col">
+							<div class="row-1 flex flex-col tablet-desktop-flex-row">
+								<div id="left-col" class="flex-1">
+								</div>
+								<div id="right-col" class="flex-1 flex-1 flex flex-col flex-justify-around">
+								</div>
+							</div>
+							<div class="row-2" id="description">
+							</div>
+						</div>
 					</div>
 				</div>
 		    </div>
-
 
 			<section class="newsletter font-white flex flex-col flex-justify-center flex-align-items-center border-bottom-light section-padding desktop-section-padding-horizontal lrg-padding-vert" id="updates" onload='document.form1.text1.focus()'>
 				<h2 class="font-weight-light font-italic font-shadow text-center sm-padding-bottom">Sign-up for<span class="font-bold font-style-normal"> Updates</span></h2>
@@ -196,117 +144,83 @@
 				</a>
 			</div>	
 			<script src="https://use.fontawesome.com/853343e015.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-		<script type="text/javascript" src="javascript/flickity.pkgd.js"></script>
-		<script type="text/javascript" src="javascript/smoothscroll.js"></script>
-		<script type="text/javascript" src="javascript/carousel.js"></script>
-		<script type="text/javascript" src="javascript/main.js"></script>			
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+			<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.js"></script>
+			<script type="text/javascript" src="assets/js/bundle.js"></script>	
+			<script>
+
+     var elem = document.querySelector('.carousel');
+var flkty = new Flickity( elem, {
+  // options
+  contain: true
+});
+
+// element argument can be a selector string
+//   for an individual element
+var flkty = new Flickity( '.carousel', {
+  // options
+});
+
+		 function checkEmail() {
+        var email = document.getElementById('txtEmail');
+        var filter = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!filter.test(email.value)) {
+           alert('Please provide a valid email address');
+           return false;
+        } else if (filter.test(email.value)) {
+          alert('Thanks for subscribing!');
+          document.getElementById('txtEmail').value='';
+          return true;
+        }
+      }
+      
+    // Custom styling for alert box
+      var ALERT_TITLE = "OwlTech";
+      var ALERT_BUTTON_TEXT = "Ok";
+
+      if(document.getElementById) {
+          window.alert = function(txt) {
+              createCustomAlert(txt);
+          }
+      }
+
+      function createCustomAlert(txt) {
+          d = document;
+
+          if(d.getElementById("modalContainer")) return;
+
+          mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+          mObj.id = "modalContainer";
+          mObj.style.height = d.documentElement.scrollHeight + "px";
+
+          alertObj = mObj.appendChild(d.createElement("div"));
+          alertObj.id = "alertBox";
+          if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
+          alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
+          alertObj.style.visiblity="visible";
+
+          h1 = alertObj.appendChild(d.createElement("h1"));
+          h1.appendChild(d.createTextNode(ALERT_TITLE));
+
+          msg = alertObj.appendChild(d.createElement("p"));
+          //msg.appendChild(d.createTextNode(txt));
+          msg.innerHTML = txt;
+
+          btn = alertObj.appendChild(d.createElement("a"));
+          btn.id = "closeBtn";
+          btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+          btn.href = "#";
+          btn.focus();
+          btn.onclick = function() { removeCustomAlert();return false; }
+
+          alertObj.style.display = "block";
+      }
+
+      function removeCustomAlert() {
+          document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+      }
+
+      </script>	
 		</footer>
-
-		<script>
-			$(document).ready(function() {
-
-			// Script for nav adjustments when scrolling past 100px from top of window
-			$(function() {
-				$(window).scroll(function() {
-					if($(window).scrollTop() >= 100) {
-						$('nav').addClass('scrolled');
-						$("#logo").attr("src", "images/logo-white.png");
-						$(".counter").addClass('counter-scroll');
-						$("#cart-icon").attr("src", "images/cart-white.png");
-					} else {
-						$('nav').removeClass('scrolled');
-					    $("#logo").attr("src", "images/logo-black.png");
-					    $('.counter').removeClass('counter-scroll');
-					    $(".counter").addClass('counter-top');
-					    $("#cart-icon").attr("src", "images/cart-black.png");
-					}
-				});
-			});
-
-			// Modal pop-up scripts
-				$('#cart-icon').click(function() {
-					$('body').addClass('overflow-hidden');
-					$('.cart-modal').fadeIn();
-				});
-
-				$('.close-modal').click(function() {
-					$('body').removeClass('overflow-hidden');
-					$('.cart-modal').fadeOut();
-				});
-
-				$('.view-btn').click(function() {
-					$('body').addClass('overflow-hidden');
-					$('.quick-view-modal').fadeIn();
-				});
-
-				$('.close-modal').click(function() {
-					$('body').removeClass('overflow-hidden');
-					$('.quick-view-modal').fadeOut();
-				});
-			});
-			// Script for form email validation 
-			function checkEmail() {
-
-		    	var email = document.getElementById('txtEmail');
-		    	var filter = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-		    	if (!filter.test(email.value)) {
-		   		 alert('Please provide a valid email address');
-		    	return false;
-				} else if (filter.test(email.value)) {
-				alert('Thanks for subscribing!');
-				document.getElementById('txtEmail').value='';
-		    	return true;
-				}
-			}
-
-			// Custom styling for alert box
-			var ALERT_TITLE = "OwlTech";
-			var ALERT_BUTTON_TEXT = "Ok";
-
-			if(document.getElementById) {
-			    window.alert = function(txt) {
-			        createCustomAlert(txt);
-			    }
-			}
-
-			function createCustomAlert(txt) {
-			    d = document;
-
-			    if(d.getElementById("modalContainer")) return;
-
-			    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
-			    mObj.id = "modalContainer";
-			    mObj.style.height = d.documentElement.scrollHeight + "px";
-
-			    alertObj = mObj.appendChild(d.createElement("div"));
-			    alertObj.id = "alertBox";
-			    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
-			    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
-			    alertObj.style.visiblity="visible";
-
-			    h1 = alertObj.appendChild(d.createElement("h1"));
-			    h1.appendChild(d.createTextNode(ALERT_TITLE));
-
-			    msg = alertObj.appendChild(d.createElement("p"));
-			    //msg.appendChild(d.createTextNode(txt));
-			    msg.innerHTML = txt;
-
-			    btn = alertObj.appendChild(d.createElement("a"));
-			    btn.id = "closeBtn";
-			    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
-			    btn.href = "#";
-			    btn.focus();
-			    btn.onclick = function() { removeCustomAlert();return false; }
-
-			    alertObj.style.display = "block";
-
-			}
-
-			function removeCustomAlert() {
-			    document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
-			}
-		</script>
 	</body>
 </html>
