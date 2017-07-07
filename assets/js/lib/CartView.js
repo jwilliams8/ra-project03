@@ -1,3 +1,4 @@
+import Cart from './Cart';
 export default class CartView {
     constructor(){
         console.log("Importing from Cart View!");
@@ -14,10 +15,16 @@ export default class CartView {
   			valueArr.push(sessionStorage[x]);
 		}
 		document.getElementById('cart-rows').innerHTML = "";
+		let outerDiv = document.getElementById('cart-rows');
+		let cartMessage = document.getElementById('cart-message');
+		if (sessionStorage.length > 0) {
+			cartMessage.innerHTML = "Your Cart";
+		} else {
+			cartMessage.innerHTML = "Your Cart Is Empty";
+		}
 		for(var x = 0; x < keyArr.length; x++){
 			for (var i = 0; i < this.allProducts.length; i++) {
-				if (keyArr[x][0] == this.allProducts[i].sku) {
-					let outerDiv = document.getElementById('cart-rows');
+				if (keyArr[x] == this.allProducts[i].sku) {
 					let itemRow = document.createElement('div');
 					itemRow.setAttribute("class", "item-row flex flex-align-items-center flex-justify-between"); 
 					let image = document.createElement('img');
@@ -28,7 +35,7 @@ export default class CartView {
 		            let price = document.createElement('h4');
 		            price.innerHTML = "$" + this.allProducts[i].regularPrice;
 		            let currentQuantity = document.createElement('p');
-		           	currentQuantity.innerHTML = valueArr[x][0];
+		           	currentQuantity.innerHTML = valueArr[x];
 		           	let quantitySelector = document.createElement('input');
 		           	quantitySelector.setAttribute("type", "number"); 
 		           	quantitySelector.setAttribute("name", "quantity"); 
@@ -37,12 +44,12 @@ export default class CartView {
 		            let updateButton = document.createElement('button');
 		            updateButton.setAttribute("type", "submit"); 
 		            updateButton.setAttribute("data-sku", this.allProducts[i].sku); 
-		            updateButton.setAttribute("class", "cart-btn font-white"); 
+		            updateButton.setAttribute("class", "update-btn font-white"); 
 		            updateButton.innerHTML = "Update";
 		            let removeButton = document.createElement('button');
 		            removeButton.setAttribute("type", "submit"); 
 		            removeButton.setAttribute("data-sku", this.allProducts[i].sku); 
-		            removeButton.setAttribute("class", "view-btn font-white"); 
+		            removeButton.setAttribute("class", "remove-btn font-white"); 
 		            removeButton.innerHTML = "Remove";
 		            outerDiv.appendChild(itemRow);
 		            itemRow.appendChild(image);
@@ -53,11 +60,16 @@ export default class CartView {
 		            itemRow.appendChild(buttonColumn);
 		            buttonColumn.appendChild(updateButton);
 		            buttonColumn.appendChild(removeButton);
-		   
 		        }
-		    }
-
-			
+		    }		
 	    }
+	    if (sessionStorage.length > 0) {
+	    	let clearButton = document.createElement('button');
+		    clearButton.setAttribute("type", "submit"); 
+		    clearButton.setAttribute("id", "clear-btn"); 
+		    clearButton.setAttribute("class", "font-white"); 
+		    clearButton.innerHTML = "Clear";
+	   		outerDiv.appendChild(clearButton);
+	   	}
     }
 }

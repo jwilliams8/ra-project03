@@ -38,10 +38,11 @@
 			<div class="modal cart-modal">
 				<div class="modal-bg flex flex-justify-center flex-align-items-center">
 					<div class="modal-box">
-						<h2 class="text-uppercase text-center font-weight-light xs-padding-bottom">Your Cart</h2>
+						<h2 id="cart-message" class="text-uppercase text-center font-weight-light xs-padding-bottom">Your Cart is Empty</h2>
 						<i class="fa fa-times close-modal" aria-hidden="true"></i>
 						<div id="cart-rows">
 						</div>
+						<!-- <button id="clear-btn" class="font-white" type="submit">Clear</button> -->
 					</div>
 				</div>
 			</div>
@@ -104,12 +105,20 @@
 			<section class="newsletter font-white flex flex-col flex-justify-center flex-align-items-center border-bottom-light section-padding desktop-section-padding-horizontal lrg-padding-vert" id="updates" onload='document.form1.text1.focus()'>
 				<h2 class="font-weight-light font-italic font-shadow text-center sm-padding-bottom">Sign-up for<span class="font-bold font-style-normal"> Updates</span></h2>
 				<p class="text-center font-line-height-lrg font-weight-light md-padding-bottom tablet-section-padding-horizontal">Stay updated on our latest product releases, be first to find out about upcoming sales, and get free tech tips from our blog. Unsubscribe at any time.</p>
-				<form class="flex flex-justify-center full-width" name="form1" id=""newsletter" action="#newsletter">
+				<form class="flex flex-justify-center full-width" name="form1" id="newsletter" action="#newsletter">
 					<div class="form-bg flex flex-justify-between">
 					<input type="text" id="txtEmail" class="font-weight-light font-light-grey" placeholder="Your Email">
 					<button type="submit" name="submit" class="font-white" onclick='Javascript:checkEmail();'>Subscribe</button>
 					</div>
 				</form>
+				<div class="modal form-modal-hide">
+					<div class="modal-bg flex flex-justify-center flex-align-items-center">
+						<div class="modal-box-subscribe flex flex-col flex-justify-center">
+							<i id="subscribe-icon" aria-hidden="true"></i>
+							<p class="modal-message"></p>
+						</div>
+					</div>
+				</div>
 			</section>
 		</main>
 
@@ -160,65 +169,35 @@ var flkty = new Flickity( elem, {
 var flkty = new Flickity( '.carousel', {
   // options
 });
+			function checkEmail() {
+		    	var email = document.getElementById('txtEmail');
+		    	var filter = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-		 function checkEmail() {
-        var email = document.getElementById('txtEmail');
-        var filter = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (!filter.test(email.value)) {
-           alert('Please provide a valid email address');
-           return false;
-        } else if (filter.test(email.value)) {
-          alert('Thanks for subscribing!');
-          document.getElementById('txtEmail').value='';
-          return true;
-        }
-      }
-      
-    // Custom styling for alert box
-      var ALERT_TITLE = "OwlTech";
-      var ALERT_BUTTON_TEXT = "Ok";
+		    	if (!filter.test(email.value)) {
+		    	    document.getElementsByClassName('modal-message')[0].innerHTML ="Invalid Email";
+		    	    document.getElementById('subscribe-icon').setAttribute("class", "fa fa-times-circle-o");
+		    		document.getElementsByClassName('form-modal-hide')[0].setAttribute("id", "form-modal-show");
+					document.getElementsByTagName("body")[0].setAttribute("class", "overflow-hidden") 
+					setTimeout(function(){ 
+					document.getElementsByClassName('form-modal-hide')[0].removeAttribute("id");
+					document.getElementsByTagName("body")[0].removeAttribute("class");
+					}, 3000) ;
 
-      if(document.getElementById) {
-          window.alert = function(txt) {
-              createCustomAlert(txt);
-          }
-      }
-
-      function createCustomAlert(txt) {
-          d = document;
-
-          if(d.getElementById("modalContainer")) return;
-
-          mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
-          mObj.id = "modalContainer";
-          mObj.style.height = d.documentElement.scrollHeight + "px";
-
-          alertObj = mObj.appendChild(d.createElement("div"));
-          alertObj.id = "alertBox";
-          if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
-          alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
-          alertObj.style.visiblity="visible";
-
-          h1 = alertObj.appendChild(d.createElement("h1"));
-          h1.appendChild(d.createTextNode(ALERT_TITLE));
-
-          msg = alertObj.appendChild(d.createElement("p"));
-          //msg.appendChild(d.createTextNode(txt));
-          msg.innerHTML = txt;
-
-          btn = alertObj.appendChild(d.createElement("a"));
-          btn.id = "closeBtn";
-          btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
-          btn.href = "#";
-          btn.focus();
-          btn.onclick = function() { removeCustomAlert();return false; }
-
-          alertObj.style.display = "block";
-      }
-
-      function removeCustomAlert() {
-          document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
-      }
+		    	return false;
+				} else if (filter.test(email.value)) {
+				    document.getElementsByClassName('modal-message')[0].innerHTML ="Thank you for subscribing!";
+		    	    document.getElementById('subscribe-icon').setAttribute("class", "fa fa-check-circle-o");
+		    		document.getElementsByClassName('form-modal-hide')[0].setAttribute("id", "form-modal-show");
+					document.getElementsByTagName("body")[0].setAttribute("class", "overflow-hidden") 
+					setTimeout(function(){ 
+	    			document.forms["newsletter"].reset();
+					document.getElementsByClassName('form-modal-hide')[0].removeAttribute("id");
+					document.getElementsByTagName("body")[0].removeAttribute("class");
+					}, 3000) ;
+				document.getElementById('txtEmail').value='';
+		    	return true;
+				}
+			}
 
       </script>	
 		</footer>

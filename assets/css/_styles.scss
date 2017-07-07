@@ -9,9 +9,7 @@ nav img{height:60%;}
 a{color:inherit;text-decoration:none;}
 a:hover{color:$secondary-color;}
 li{display:inline;}
-button:focus, input:focus{outline:none;}
-button:hover{background-color:#223b66;}
-@font-face{font-family:PlayfairDisplay;src:url(../fonts/PlayfairDisplay-Bold.otf);font-weight:bold;font-style:normal;}
+button:focus, input:focus{outline:none;}@font-face{font-family:PlayfairDisplay;src:url(../fonts/PlayfairDisplay-Bold.otf);font-weight:bold;font-style:normal;}
 @font-face{font-family:PlayfairDisplay;src:url(../fonts/PlayfairDisplay-BoldItalic.otf);font-weight:bold;font-style:italic;}
 @font-face{font-family:PlayfairDisplay;src:url(../fonts/PlayfairDisplay-Italic.otf);font-weight:normal;font-style:italic;}
 @font-face{font-family:PlayfairDisplay;src:url(../fonts/PlayfairDisplay-Regular.otf);font-weight:normal;font-style:normal;}
@@ -139,7 +137,7 @@ button:hover{background-color:#223b66;}
   	h3 {
   		color: $secondary-color;
   	}
-	.view-btn {
+  	.view-btn {
 		background-color: #fff;
 		border: 2px solid $secondary-color;
 		color: $secondary-color;
@@ -147,16 +145,24 @@ button:hover{background-color:#223b66;}
 	}
 }
 
-.cart-btn {
+.update-btn, .cart-btn, .clear-btn {
 	background-color: $secondary-color;
 	border: 2px solid $secondary-color;
 	cursor: pointer;
 }
-.cart-btn:hover {
+.update-btn:hover, .cart-btn:hover {
 	background-color: #223b66; 
 	border-color: #223b66;
 }
-
+.remove-btn {
+	background-color: #fff;
+	border: 2px solid $secondary-color;
+	color: $secondary-color;
+	cursor: pointer;
+}
+.clear-btn {
+	margin-top: 20px;
+}
 form {
 	button {
 		background-color: $secondary-color;
@@ -225,6 +231,48 @@ form {
 		color: $secondary-color;
 	}
 }
+
+.form-modal-hide{
+	display:none;
+	position: fixed;
+	z-index: 2;
+	opacity: 0;
+ 	transition: all 3s ease;
+}
+
+.modal {
+	.modal-box-subscribe {
+		background-color: $secondary-color;
+		margin: 0 auto;
+		position: relative;
+		padding: 3rem 4rem;
+		overflow-y: scroll;
+		text-align: center;
+		border-radius: 5px;
+		p {
+			padding: 0;
+			font-size: 1.4rem;
+			color: #fff;
+			font-family:Raleway;
+			text-transform: uppercase;
+			font-weight: 700;
+			letter-spacing: .2rem;
+		}
+		i {
+			font-size: 70px;
+			color: #fff;
+			padding-bottom: 1rem;
+		}
+	}
+}
+
+#form-modal-show {
+	display: block;
+	position: fixed;
+	z-index: 2;
+	opacity: 1;
+	transition: all 3s ease;
+}
 .row-1 {
 	padding-bottom: 15px;
 }
@@ -276,12 +324,7 @@ button{font-size:0.9em;font-family:Raleway;padding:8px 16px;border:none;-webkit-
 #styles {
 	border-top: 5px solid #fff;
 }
-#modalContainer{background-color:rgba(0, 0, 0, 0.5);position:absolute;width:100%;height:100%;top:0px;left:0px;z-index:10000;background-image:url(tp.png);}
-#alertBox{position:relative;width:300px;padding-bottom:20px;margin-top:35vh;border-radius:10px;background-color:#fff;background-repeat:no-repeat;background-position:20px 30px;text-align:center;}
-#modalContainer > #alertBox{position:fixed;}
-#alertBox h1{margin:0;font:bold 0.9em Raleway;background-color:$secondary-color;color:#FFF;border-radius:10px 10px 0 0;padding:10px 0;}
-#alertBox p{font:0.8em Raleway;padding:20px 0;}
-#alertBox #closeBtn{display:block;position:relative;margin:0 auto;padding:7px;border:0 none;width:70px;font:0.7em Raleway;text-transform:uppercase;text-align:center;color:#FFF;background-color:$secondary-color;border-radius:3px;text-decoration:none;}
+
 @media only screen and (min-device-width:600px) and (max-device-width:1239px), only screen and (min-width:600px) and (max-width:1239px){.tablet-section-padding-horizontal{padding-left:20px;padding-right:20px;}
 .no-padding-tablet{padding:0px;}
 .font-line-height-sm{line-height:1em;}

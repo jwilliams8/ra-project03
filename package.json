@@ -15,8 +15,7 @@
   "keywords": [
     "babel",
     "gulp",
-    "es2015",
-    "hyper",
+    "es2015"
   ],
   "bugs": {
     "url": "https://github.com/eapostol/babel-with-gulp/issues"

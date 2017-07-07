@@ -38,7 +38,7 @@ export default class CarouselView{
                     cell.appendChild(price)  
                     cell.appendChild(qvButton)                      
                     cell.appendChild(atcButton)                                          
-                    return cell;  
+                    return cell;
             }
                 flkty.append(this.cellElems());
             };
@@ -58,6 +58,16 @@ export default class CarouselView{
         }
 
         atcCounter() {
+            // let quantityArray = [];
+            // for(var x in sessionStorage){
+            //     quantityArray.push(sessionStorage[x]);
+            // }
+            // console.log(quantityArray);
+            // let newQuantityArray = ["1","2"].reduce((a, b) => a + b, 0);
+            // console.log(newQuantityArray);
+
+            //console.log(newQuantityArray); // 6
+
             let counter = 1;
             $('.cart-btn').click(function() {
                $(".counter").addClass('counter-top');
