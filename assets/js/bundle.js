@@ -236,6 +236,16 @@ var CarouselView = function () {
     }, {
         key: 'atcCounter',
         value: function atcCounter() {
+            // let quantityArray = [];
+            // for(var x in sessionStorage){
+            //     quantityArray.push(sessionStorage[x]);
+            // }
+            // console.log(quantityArray);
+            // let newQuantityArray = ["1","2"].reduce((a, b) => a + b, 0);
+            // console.log(newQuantityArray);
+
+            //console.log(newQuantityArray); // 6
+
             var counter = 1;
             $('.cart-btn').click(function () {
                 $(".counter").addClass('counter-top');
@@ -283,7 +293,10 @@ var Cart = function () {
         key: 'loadCart',
         value: function loadCart() {
             this.cartView.allProducts = this.allProducts;
+            this.cartView.buildCartView();
             this.cartEventListener();
+            this.removeListen();
+            this.clearListen();
         }
     }, {
         key: 'cartEventListener',
@@ -299,11 +312,68 @@ var Cart = function () {
             var dataSku = e.target.getAttribute('data-sku');
             for (var i = 0; i < this.allProducts.length; i++) {
                 if (dataSku == this.allProducts[i].sku) {
-                    var quantity = 1;
-                    sessionStorage.setItem(this.allProducts[i].sku, quantity);
+                    if (sessionStorage.length > 0) {
+                        for (var x in sessionStorage) {
+                            if (this.allProducts[i].sku != [x]) {
+                                console.log("first product of it's kind");
+                                sessionStorage.setItem(this.allProducts[i].sku, 1);
+                                this.cartView.buildCartView();
+                            } else {
+                                console.log("same of existing product");
+                                var newQuantity = parseInt(sessionStorage[x]) + 1;
+                                sessionStorage.setItem(this.allProducts[i].sku, newQuantity);
+                                this.cartView.buildCartView();
+                            }
+                        }
+                    } else {
+                        sessionStorage.setItem(this.allProducts[i].sku, 1);
+                        this.cartView.buildCartView();
+                        console.log("first ever product");
+                    }
+                }
+            }
+            this.removeListen();
+            this.clearListen();
+        }
+    }, {
+        key: 'removeListen',
+        value: function removeListen() {
+            if (sessionStorage.length > 0) {
+                var removeBtn = document.getElementsByClassName('remove-btn');
+                for (var i = 0; i < removeBtn.length; i++) {
+                    removeBtn[i].addEventListener('click', this.removeStorage.bind(this), false);
+                }
+            }
+        }
+    }, {
+        key: 'removeStorage',
+        value: function removeStorage(e) {
+            var dataSku = e.target.getAttribute('data-sku');
+            for (var i = 0; i < this.allProducts.length; i++) {
+                if (dataSku == this.allProducts[i].sku) {
+                    sessionStorage.removeItem(this.allProducts[i].sku);
                 }
             }
             this.cartView.buildCartView();
+            this.removeListen();
+            this.clearListen();
+        }
+    }, {
+        key: 'clearListen',
+        value: function clearListen() {
+            if (sessionStorage.length > 0) {
+                var clearBtn = document.getElementById('clear-btn');
+                clearBtn.addEventListener('click', this.clearStorage, false);
+            }
+        }
+    }, {
+        key: 'clearStorage',
+        value: function clearStorage() {
+            sessionStorage.clear();
+            var outerDiv = document.getElementById('cart-rows');
+            var cartMessage = document.getElementById('cart-message');
+            outerDiv.innerHTML = "";
+            cartMessage.innerHTML = "Your Cart is Empty";
         }
     }, {
         key: 'cartModal',
@@ -325,13 +395,19 @@ var Cart = function () {
 exports.default = Cart;
 
 },{"./CartView":5}],5:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Cart = require('./Cart');
+
+var _Cart2 = _interopRequireDefault(_Cart);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -344,7 +420,7 @@ var CartView = function () {
 	}
 
 	_createClass(CartView, [{
-		key: "buildCartView",
+		key: 'buildCartView',
 		value: function buildCartView() {
 			var keyArr = [];
 			for (var x in sessionStorage) {
@@ -355,10 +431,16 @@ var CartView = function () {
 				valueArr.push(sessionStorage[x]);
 			}
 			document.getElementById('cart-rows').innerHTML = "";
+			var outerDiv = document.getElementById('cart-rows');
+			var cartMessage = document.getElementById('cart-message');
+			if (sessionStorage.length > 0) {
+				cartMessage.innerHTML = "Your Cart";
+			} else {
+				cartMessage.innerHTML = "Your Cart Is Empty";
+			}
 			for (var x = 0; x < keyArr.length; x++) {
 				for (var i = 0; i < this.allProducts.length; i++) {
-					if (keyArr[x][0] == this.allProducts[i].sku) {
-						var outerDiv = document.getElementById('cart-rows');
+					if (keyArr[x] == this.allProducts[i].sku) {
 						var itemRow = document.createElement('div');
 						itemRow.setAttribute("class", "item-row flex flex-align-items-center flex-justify-between");
 						var image = document.createElement('img');
@@ -369,7 +451,7 @@ var CartView = function () {
 						var price = document.createElement('h4');
 						price.innerHTML = "$" + this.allProducts[i].regularPrice;
 						var currentQuantity = document.createElement('p');
-						currentQuantity.innerHTML = valueArr[x][0];
+						currentQuantity.innerHTML = valueArr[x];
 						var quantitySelector = document.createElement('input');
 						quantitySelector.setAttribute("type", "number");
 						quantitySelector.setAttribute("name", "quantity");
@@ -378,12 +460,12 @@ var CartView = function () {
 						var updateButton = document.createElement('button');
 						updateButton.setAttribute("type", "submit");
 						updateButton.setAttribute("data-sku", this.allProducts[i].sku);
-						updateButton.setAttribute("class", "cart-btn font-white");
+						updateButton.setAttribute("class", "update-btn font-white");
 						updateButton.innerHTML = "Update";
 						var removeButton = document.createElement('button');
 						removeButton.setAttribute("type", "submit");
 						removeButton.setAttribute("data-sku", this.allProducts[i].sku);
-						removeButton.setAttribute("class", "view-btn font-white");
+						removeButton.setAttribute("class", "remove-btn font-white");
 						removeButton.innerHTML = "Remove";
 						outerDiv.appendChild(itemRow);
 						itemRow.appendChild(image);
@@ -397,6 +479,14 @@ var CartView = function () {
 					}
 				}
 			}
+			if (sessionStorage.length > 0) {
+				var clearButton = document.createElement('button');
+				clearButton.setAttribute("type", "submit");
+				clearButton.setAttribute("id", "clear-btn");
+				clearButton.setAttribute("class", "font-white");
+				clearButton.innerHTML = "Clear";
+				outerDiv.appendChild(clearButton);
+			}
 		}
 	}]);
 
@@ -405,7 +495,7 @@ var CartView = function () {
 
 exports.default = CartView;
 
-},{}],6:[function(require,module,exports){
+},{"./Cart":4}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
